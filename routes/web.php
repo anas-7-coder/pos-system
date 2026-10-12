@@ -35,6 +35,7 @@ use App\Http\Controllers\WarehouseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\PosController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -257,6 +258,10 @@ Route::middleware('auth')->group(function () {
     Route::put('/sales/{sale}', [SaleController::class, 'update'])->name('sales.update');
     Route::patch('/sales/{sale}/cancel', [SaleController::class, 'cancel'])->name('sales.cancel');
     Route::patch('/sales/{sale}/credit', [SaleController::class, 'credit'])->middleware('permission:sales.credit')->name('sales.credit');
+
+    // Separate Cashier Terminal
+    Route::get('/pos', [PosController::class, 'index'])->name('pos.index');
+    Route::get('/pos/products/search', [PosController::class, 'searchProducts'])->name('pos.products.search');
 
     // Payments
     Route::get('/payments', [PaymentController::class, 'index'])->middleware('permission:payments.view')->name('payments.index');

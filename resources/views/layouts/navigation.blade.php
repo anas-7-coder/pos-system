@@ -754,6 +754,17 @@
         Sales
     </div>
 
+    
+    @can('create', \App\Models\Sale::class)
+        <a
+            href="{{ route('pos.index') }}"
+            class="sidebar-link {{ request()->routeIs('pos.*') ? 'active' : '' }}"
+        >
+            <span class="sidebar-icon">▣</span>
+            <span>Cashier Terminal (POS)</span>
+        </a>
+    @endcan
+
     <nav class="sidebar-nav">
 
         <a
